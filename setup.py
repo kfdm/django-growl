@@ -24,6 +24,7 @@ setup(
     ],
     install_requires=[
         'djangorestframework',
+        'gntp',
     ],
     entry_points={
         'django.apps': ['growl = webgntp'],
