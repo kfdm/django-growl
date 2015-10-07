@@ -27,7 +27,7 @@ setup(
         'gntp',
     ],
     entry_points={
-        'django.apps': ['growl = webgntp'],
-        'django.urls': ['growl = webgntp.urls']
+        'powerplug.apps': ['growl = webgntp'],
+        'powerplug.urls': ['growl = webgntp.urls']
     },
 )
