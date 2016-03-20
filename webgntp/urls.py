@@ -1,7 +1,6 @@
 import webgntp.views
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
-urlpatterns = patterns(
-    '',
+urlpatterns = [
     url(r'^$', webgntp.views.GrowlForward.as_view()),
-)
+]
