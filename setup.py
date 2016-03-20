@@ -27,7 +27,7 @@ setup(
         'gntp',
     ],
     entry_points={
-        'powerplug.apps': ['growl = webgntp'],
+        'powerplug.apps': ['growl = webgntp.apps.GrowlConfig'],
         'powerplug.urls': ['growl = webgntp.urls']
     },
 )
