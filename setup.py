@@ -33,7 +33,7 @@ setup(
             'growl = webgntp.rest:MessageViewSet',
         ],
         'simplestats.minutely': [
-            'notifications = webgntp.plugins.notifications:Notifications',
+            'notifications = webgntp.plugins.notifications:QueuedNotifications',
         ],
     },
 )

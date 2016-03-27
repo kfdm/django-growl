@@ -4,6 +4,7 @@ import logging
 import django.utils.timezone
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils.translation import ugettext_lazy as _
 
 from pomodoro.models import Pomodoro
 from webgntp.models import Notification
@@ -17,7 +18,8 @@ def my_callback(sender, instance, created, **kwargs):
 
     if instance.completed > now:
         notification = Notification()
-        notification.notification = instance.title
+        notification.notification = _('Pomodoro Completed')
+        notification.message = instance.title + ' #' + instance.category
         notification.owner = instance.owner
         notification.sent = instance.completed
         notification.status = 'queued'

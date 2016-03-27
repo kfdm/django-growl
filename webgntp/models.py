@@ -36,7 +36,9 @@ class Notification(models.Model):
     created = models.DateTimeField(auto_now_add=True, verbose_name=_('created'))
     sent = models.DateTimeField(blank=True)
     status = models.CharField(max_length=32, choices=STATUS_TYPES)
+
     notification = models.CharField(max_length=32)
+    message = models.TextField()
     owner = models.ForeignKey('auth.User', related_name='notification', verbose_name=_('owner'))
 
     def __str__(self):
@@ -50,7 +52,7 @@ class Notification(models.Model):
         key = ProwlKey.objects.get(owner=self.owner)
         if key:
             try:
-                key.send(self.notification, 'Event')
+                key.send(self.message, self.notification)
                 self.status = 'sent'
                 self.save()
                 return True

@@ -13,6 +13,7 @@ class MessageAdmin(admin.ModelAdmin):
 
 @admin.register(webgntp.models.Notification)
 class NotificationAdmin(admin.ModelAdmin):
+    ordering = ('-created',)
     list_display = ('sent', 'status', 'notification', 'owner')
     list_filter = ('status', 'owner')
 
