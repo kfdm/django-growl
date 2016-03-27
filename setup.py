@@ -32,5 +32,8 @@ setup(
         'powerplug.rest': [
             'growl = webgntp.rest:MessageViewSet',
         ],
+        'simplestats.minutely': [
+            'notifications = webgntp.plugins.notifications:Notifications',
+        ],
     },
 )
