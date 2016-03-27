@@ -9,3 +9,5 @@ class MessageAdmin(admin.ModelAdmin):
     list_display = ('application', 'type', 'notification', 'created',)
     list_filter = ('type', 'application', 'notification')
     date_hierarchy = 'created'
+
+admin.site.register(webgntp.models.ProwlKey)
