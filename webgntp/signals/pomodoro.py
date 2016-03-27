@@ -14,6 +14,10 @@ logger = logging.getLogger(__name__)
 
 @receiver(post_save, sender=Pomodoro)
 def my_callback(sender, instance, created, **kwargs):
+    # Only do this for newly created objects for now
+    if created is False:
+        return
+
     now = django.utils.timezone.now()
 
     if instance.completed > now:
