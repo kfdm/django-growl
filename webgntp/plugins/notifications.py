@@ -20,5 +20,9 @@ class QueuedNotifications(object):
                 logger.exception('Error sending')
                 error += 1
 
+        # Temporarily disable notification stats
+        # this this runs every minute and generates
+        # a lot of data of questionable usefulness
+        return
         yield now, 'notifications.sent', sent
         yield now, 'notifications.error', error
