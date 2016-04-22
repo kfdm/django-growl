@@ -7,7 +7,8 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy as _
 
 from pomodoro.models import Pomodoro
-from webgntp.models import Notification
+from webgntp.models import ProwlKey
+from webgntp.tasks import send_notification
 
 logger = logging.getLogger(__name__)
 
@@ -21,10 +22,9 @@ def my_callback(sender, instance, created, **kwargs):
     now = django.utils.timezone.now()
 
     if instance.completed > now:
-        notification = Notification()
-        notification.notification = _('Pomodoro Completed')
-        notification.message = instance.title + ' #' + instance.category
-        notification.owner = instance.owner
-        notification.sent = instance.completed
-        notification.status = 'queued'
-        notification.save()
+        for prowl in ProwlKey.objects.filter(owner=instance.owner):
+            send_notification.s(
+                str(_('Pomodoro Completed')),
+                instance.title + ' #' + instance.category,
+                prowl.key
+            ).apply_async(eta=instance.completed)

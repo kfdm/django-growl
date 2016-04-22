@@ -29,11 +29,5 @@ setup(
     entry_points={
         'powerplug.apps': ['growl = webgntp.apps.GrowlConfig'],
         'powerplug.urls': ['growl = webgntp.urls'],
-        'powerplug.rest': [
-            'growl = webgntp.rest:MessageViewSet',
-        ],
-        'simplestats.minutely': [
-            'notifications = webgntp.plugins.notifications:QueuedNotifications',
-        ],
     },
 )
