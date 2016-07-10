@@ -1,4 +1,3 @@
-import datetime
 import logging
 
 import django.utils.timezone
@@ -17,6 +16,10 @@ logger = logging.getLogger(__name__)
 def my_callback(sender, instance, created, **kwargs):
     # Only do this for newly created objects for now
     if created is False:
+        return
+
+    # Skip pomodoro's that are less than 2 minutes long
+    if instance.duration <= 2:
         return
 
     now = django.utils.timezone.now()
