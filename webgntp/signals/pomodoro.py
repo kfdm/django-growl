@@ -19,7 +19,7 @@ def my_callback(sender, instance, created, **kwargs):
         return
 
     # Skip pomodoro's that are less than 2 minutes long
-    if instance.duration <= 2:
+    if instance.duration.total_seconds() <= 120:
         return
 
     now = django.utils.timezone.now()
