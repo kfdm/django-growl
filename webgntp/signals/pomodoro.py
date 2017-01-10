@@ -24,10 +24,10 @@ def my_callback(sender, instance, created, **kwargs):
 
     now = django.utils.timezone.now()
 
-    if instance.completed > now:
+    if instance.end > now:
         for prowl in ProwlKey.objects.filter(owner=instance.owner):
             send_notification.s(
                 str(_('Pomodoro Completed')),
                 instance.title + ' #' + instance.category,
                 prowl.key
-            ).apply_async(eta=instance.completed)
+            ).apply_async(eta=instance.end)
